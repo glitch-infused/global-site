@@ -19,7 +19,9 @@ Execute ` run_serve.bat ` if you want to host on your pc and allow others to acc
 After you run this script, you will be able to post messages on a site on your pc.
 
 ### Step 1:
-Open your browser and connect to your ip address (localhost if you use ` run_debug.bat `).
+Open your browser and connect to your website.
+The url is "localhost" if you use ` run.bat ` or ` run_debug.bat `.
+If you used ` run_serve.bat ` "localhost" and your ip adress will both work.
 
 ### Step 2:
 Go to the addpost page by clicking the " Make a post " button in the navigation bar.
