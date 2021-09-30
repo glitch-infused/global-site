@@ -8,6 +8,10 @@ Color palette:
 #efefef
 */
 
+@font-face {
+  font-family: dft;
+  src: url("default_font.ttf");
+}
 
 .topnav {
   background-color: #252526;
@@ -63,7 +67,7 @@ Color palette:
 html {
   color: #efefef;
   background-color: #1e1e1e;
-  font-family: 'Gemunu Libre', sans-serif;
+  font-family: 'dft', sans-serif;
 }
 
 h1 {
