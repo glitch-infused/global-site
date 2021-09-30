@@ -8,10 +8,10 @@ from json import dumps, loads
 from mimetypes import guess_type
 from random import choices
 from waitress import serve
+from sys import argv
 
-
-DEBUG = False
-SERVE = False
+DEBUG = "debug" in argv
+SERVE = "serve" in argv
 
 
 app = Flask(__name__)
