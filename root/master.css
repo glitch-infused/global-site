@@ -1,0 +1,142 @@
+/*
+Color palette:
+#007acc
+#3e3e42
+#2d2d30
+#252526
+#1e1e1e
+#efefef
+*/
+
+
+.topnav {
+  background-color: #252526;
+  overflow: hidden;
+  position: fixed;
+}
+
+.topnav a {
+  float: left;
+  color: #efefef;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #3e3e42;
+  color: #007acc;
+}
+
+.topnav a.active {
+  background-color: #007acc;
+  color: white;
+}
+
+.post {
+  text-align: center;
+  width: 40%;
+  border: #2d2d30 solid 3px;
+  border-radius: 8px;
+}
+
+.post a {
+    text-decoration: none;
+    color: inherit;
+    cursor: default;
+}
+
+.post-content {
+  border-top: #2d2d30 solid 3px;
+}
+
+.post-content-media {
+  /*max-height: 500px;*/
+  width: 98%;
+}
+
+.post-content-audio {
+  color: #007acc;
+}
+
+html {
+  color: #efefef;
+  background-color: #1e1e1e;
+  font-family: 'Gemunu Libre', sans-serif;
+}
+
+h1 {
+  color: #efefef;
+  font-size: 100px;
+}
+
+.subtitle {
+  font-size: 50px;
+}
+
+h3 {
+  word-wrap: break-word;
+}
+
+p {
+  font-weight: bolder;
+  color: #007acc;
+}
+
+.button {
+  color: #efefef;
+  background-color: #2d2d30;
+  border-color: #007acc;
+  border-style: solid;
+  border-radius: 2px;
+  font-family: 'Gemunu Libre', sans-serif;
+}
+
+.input-title {
+  width: 300px;
+  color: #efefef;
+  background-color: #2d2d30;
+  border-color: #007acc;
+  border-style: solid;
+  border-radius: 2px;
+  font-family: 'Gemunu Libre', sans-serif;
+}
+
+textarea {
+  resize: none;
+  font-family: 'Gemunu Libre', sans-serif;
+}
+
+.input-content {
+  width: 500px;
+  height: 270px;
+  color: #efefef;
+  background-color: #2d2d30;
+  border-color: #007acc;
+  border-style: solid;
+  border-radius: 2px;
+  font-family: 'Gemunu Libre', sans-serif;
+}
+
+.input-counter {
+  margin-top: 4px;
+  width: 65px;
+  direction: rtl;
+  color: #efefef;
+  background-color: #1e1e1e;
+  border-style: none;
+}
+
+.input-media-holder {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.input-media {
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  opacity: 0;
+}

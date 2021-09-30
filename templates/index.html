@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/master.css">
+    <link rel="stylesheet" href="/fontawesome/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@800&display=swap" rel="stylesheet"> 
+    <script>
+
+    </script>
+    <title>Home | GLOBAL</title>
+  </head>
+  <body>
+    <div class="topnav">
+      <a class="active" href="#">Home</a>
+      <a href="account.html">Profile</a>
+      <a href="about.html">About</a>
+      <a href="addpost.html">Make a post</a>
+    </div>
+    <br>
+    <h1 align="center">
+      GLOBAL
+    </h1>
+    <br>
+    <div class="post-holder" align="center">
+      <!-- Posts start appearing here -->
+      {% for post in posts %}
+      <br>
+      <div class="post">
+        <a href="/view?id={{post.id}}">
+        <h2 class="post-title">{{post.title}}</h2>
+        </a>
+        <div class="post-content">
+          <h3 class="post-content-text">{{post.content}}</h3>
+          {% if post.media_type=="image" %}
+          <img class="post-content-media" src="{{post.media_url}}" alt="post-content-media">
+          {% endif %}
+          {% if post.media_type=="video" %}
+          <video class="post-content-media" src="{{post.media_url}}" alt="post-content-media" onmouseenter="this.play();" onmouseleave="this.pause();" loop="true"></video>
+          {% endif %}
+          {% if post.media_type=="audio" %}
+          <audio class="post-content-audio" src="{{post.media_url}}" alt="post-content-media"></audio>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+      <!-- Posts stop appearing here -->
+    </div>
+    <div align="center" style="vertical-align: bottom;">
+      {% if page > 0 %}
+      <a href="?page={{ page-1 }}">
+        <button>
+          <
+        </button>
+      </a>
+      {% endif %}
+      {% if page_cnt > 1 %}
+        {{ page }}
+      {% endif %}
+      {% if page < page_cnt %}
+      <a href="?page={{ page + 1 }}">
+        <button>
+          >
+        </button>
+      </a>
+      {% endif %}
+    </div>
+  </body>
+</html>

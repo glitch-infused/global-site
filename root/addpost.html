@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="master.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@800&display=swap" rel="stylesheet"> 
+    <title>Addpost | GLOBAL</title>
+    <script>
+      function updateCounter()
+      {
+        var count = document.getElementById("counter");
+        var textarea = document.getElementById("textarea");
+        count.value = textarea.value.length + "/1024";
+      }
+    </script>
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="/">Home</a>
+      <a href="account.html">Profile</a>
+      <a href="about.html">About</a>
+      <a class="active" href="addpost.html">Make a post</a>
+    </div>
+    <br>
+    <h2 align="center">
+      Make a post!
+    </h2>
+    <form action="addpost" method="post" enctype = "multipart/form-data">
+        <h3>Title</h3>
+        <input type="text" name="title" class="input-title" autocomplete="off">
+        <h3>Content</h3>
+        <textarea name="content" class="input-content" maxlength="1024" onkeyup="updateCounter();" onkeydown="updateCounter();" id="textarea"></textarea>
+        <br>
+        <input disabled size="3" value="0/1024" id="counter" class="input-counter">
+        <br>
+        <br>
+        <div class="input-media-holder">
+          <button class="button">Upload media</button>
+          <input type="file" name="media" class="input-media" accept="image/*,video/*,audio/*">
+        </div>
+        <br>
+        <input type="submit" value="done!" class="button">
+    </form>
+  </body>
+</html>

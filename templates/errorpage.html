@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="master.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@800&display=swap" rel="stylesheet"> 
+    <title>Error {{ errorcode }} | GLOBAL</title>
+  </head>
+  <body>
+    <div class="topnav">
+      <a class="active" href="index.html">Home</a>
+      <a href="account.html">Profile</a>
+      <a href="about.html">About</a>
+      <a href="addpost.html">Make a post</a>
+    </div>
+    <br>
+    <h1>
+        ERROR {{ errorcode }}
+    </h1>
+    <h2>
+        Error: {{ errormessage }}
+    </h2>
+    <br>
+  </body>
+</html>

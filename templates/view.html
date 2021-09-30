@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="master.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@800&display=swap" rel="stylesheet"> 
+    <title>View | GLOBAL</title>
+  </head>
+  <body>
+    <div class="topnav">
+      <a class="active" href="/">Home</a>
+      <a href="account.html">Profile</a>
+      <a href="about.html">About</a>
+      <a href="addpost.html">Make a post</a>
+    </div>
+    <br>
+    <div class="post" style="margin-top: 0; position: absolute; top: 20%; left: 50%; margin-left: -20%;">
+      <h2 class="post-title">{{post.title}}</h2>
+      <div class="post-content">
+        <h3 class="post-content-text">{{post.content}}</h3>
+          {% if post.media_type=="image" %}
+          <img class="post-content-media" src="{{post.media_url}}" alt="post-content-media">
+          {% endif %}
+          {% if post.media_type=="video" %}
+          <video class="post-content-media" src="{{post.media_url}}" alt="post-content-media" onmouseenter="this.play();" onmouseleave="this.pause();" loop="true"></video>
+          {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
