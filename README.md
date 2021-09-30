@@ -24,7 +24,7 @@ The url is "localhost" if you use ` run.bat ` or ` run_debug.bat `.
 If you used ` run_serve.bat ` "localhost" and your ip adress will both work.
 
 ### Step 2:
-Go to the addpost page by clicking the " Make a post " button in the navigation bar.
+Go to the addpost page by clicking the "Make a post" button in the navigation bar.
 
 ### Step 3:
 Enter a title and write some content for your post.
@@ -32,4 +32,4 @@ If you want to add media (image, video, audio) to your post, click the upload me
 You don't add content if you have media attached to your post.
 
 ### Step 4:
-Press the " done " button and watch your post appear on the site!
+Press the "done" button and watch your post appear on the site!
