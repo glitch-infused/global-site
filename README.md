@@ -11,13 +11,15 @@ install required packages
 ` pip install -r requirements.txt `
 
 ### Step 3:
-execute ` run.bat `
+Execute ` run.bat ` if you want to host on your pc. (only you will be able to access your site)
+Execute ` run_debug.bat ` if you want to host in debug mode. (only you will be able to access your site)
+Execute ` run_serve.bat ` if you want to host on your pc and allow others to access your site.
 
 ## How to use
 After you run this script, you will be able to post messages on a site on your pc.
 
 ### Step 1:
-Open your browser and connect to your ip address (localhost if you use ` debug.bat `).
+Open your browser and connect to your ip address (localhost if you use ` run_debug.bat `).
 
 ### Step 2:
 Go to the addpost page by clicking the " Make a post " button in the navigation bar.
