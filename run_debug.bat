@@ -1,3 +1,3 @@
 @echo off
-title html
+title GLOBAL
 cmd /c "python main.py debug"
