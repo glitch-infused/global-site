@@ -11,6 +11,21 @@
         var textarea = document.getElementById("textarea");
         count.value = textarea.value.length + "/1024";
       }
+      function checkPost()
+      {
+        var hasTitle = document.getElementById('title').value.length > 0;
+        var hasContent = document.getElementById('textarea').value.length > 0;
+        var hasMedia = document.getElementById('fileupload').value.length > 1;
+        var isOk = hasTitle && (hasContent | hasMedia) == 1;
+        if (!isOk)
+        {
+          //alert("please add text/media content to your post!"); //way to angry
+          var obj = document.getElementById("errortext");
+          obj.hidden = false;
+          obj.innerText = "please add text/media content to your post";
+        }
+        return isOk;
+      }
     </script>
   </head>
   <body>
@@ -24,18 +39,19 @@
     <h2 align="center">
       Make a post!
     </h2>
-    <form action="addpost" method="post" enctype = "multipart/form-data">
+    <form action="addpost" method="post" enctype = "multipart/form-data" onsubmit="return checkPost();">
         <h3>Title</h3>
-        <input type="text" name="title" class="input-title" autocomplete="off">
+        <input type="text" name="title" class="input-title" autocomplete="off" required id="title">
         <h3>Content</h3>
         <textarea name="content" class="input-content" maxlength="1024" onkeyup="updateCounter();" onkeydown="updateCounter();" id="textarea"></textarea>
         <br>
         <input disabled size="3" value="0/1024" id="counter" class="input-counter">
         <br>
+        <i hidden id="errortext" style="color: #ef0000;"></i>
         <br>
         <div class="input-media-holder">
           <button class="button">Upload media</button>
-          <input type="file" name="media" class="input-media" accept="image/*,video/*,audio/*">
+          <input type="file" name="media" class="input-media" accept="image/*,video/*,audio/*" id="fileupload">
         </div>
         <br>
         <input type="submit" value="done!" class="button">

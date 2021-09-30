@@ -10,7 +10,7 @@ Color palette:
 
 @font-face {
   font-family: dft;
-  src: url("default_font.ttf");
+  src: url("/default_font.ttf");
 }
 
 .topnav {

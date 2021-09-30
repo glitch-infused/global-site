@@ -166,7 +166,7 @@ def addpost():
                 existing_posts=POSTS,
                 media_url=url
             )
-        else:
+        elif content:
             MakePost(title, content,
                 existing_posts=POSTS
             )
