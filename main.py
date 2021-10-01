@@ -1,6 +1,7 @@
 from typing import List, Union
 import flask
 from werkzeug.datastructures import FileStorage
+from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request
 from os.path import isfile
 from hashlib import sha224
@@ -98,7 +99,7 @@ def StoreFile(file: FileStorage) -> str:
     ext = str(file.filename).split('.')[-1]
     data = file.stream.read()
     name = sha224(data).hexdigest()
-    with open(f"./mediastorage/{name}.{ext}", "wb") as f:
+    with open(secure_filename(f"./mediastorage/{name}.{ext}"), "wb") as f:
         f.write(data)
     return f"/media/{name}.{ext}"
 

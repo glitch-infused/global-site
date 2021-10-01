@@ -11,10 +11,22 @@
         var textarea = document.getElementById("textarea");
         count.value = textarea.value.length + "/1024";
       }
+      function strip(str)
+      {
+        while (str.startsWith(" "))
+        {
+          str = str.slice(1);
+        }
+        while (str.endsWith(" "))
+        {
+          str = str.slice(0, -1);
+        }
+        return str;
+      }
       function checkPost()
       {
-        var hasTitle = document.getElementById('title').value.length > 0;
-        var hasContent = document.getElementById('textarea').value.length > 0;
+        var hasTitle = strip(document.getElementById('title').value).length > 0;
+        var hasContent = strip(document.getElementById('textarea').value).length > 0;
         var hasMedia = document.getElementById('fileupload').value.length > 1;
         var isOk = hasTitle && (hasContent | hasMedia) == 1;
         if (!isOk)
