@@ -10,6 +10,7 @@ from mimetypes import guess_type
 from random import choices
 from waitress import serve
 from sys import argv
+from time import time
 
 DEBUG = "debug" in argv
 SERVE = "serve" in argv
@@ -46,20 +47,19 @@ class Post:
 
     def __str__(self) -> str:
         """Convert Post object to string"""
-        return self.ToJson()
+        return str(self.ToJson())
     
     def __eq__(self, other) -> bool:
         """check if a post is equal to another post"""
         return self.__str__() == other.__str__()
     
-    def ToJson(self) -> str:
+    def ToJson(self) -> dict:
         """Convert a post to JSON"""
-        return dumps({"title": self.title, "content": self.content, "id": self.id, "media_url": self.media_url})
+        return {"title": self.title, "content": self.content, "id": self.id, "media_url": self.media_url}
 
-def FromJson(json: str) -> Post:
+def FromJson(json: dict) -> Post:
     """Make a post from JSON string"""
-    postdict = loads(json)
-    return Post(postdict["title"], postdict["content"], postdict["id"], postdict["media_url"])
+    return Post(json["title"], json["content"], json["id"], json["media_url"])
 
 def GenerateId(postlist: list) -> int:
     """Generate an unique ID from the postlist"""
@@ -99,9 +99,36 @@ def StoreFile(file: FileStorage) -> str:
     ext = str(file.filename).split('.')[-1]
     data = file.stream.read()
     name = sha224(data).hexdigest()
-    with open(secure_filename(f"./mediastorage/{name}.{ext}"), "wb") as f:
+    with open(f"./mediastorage/{name}.{ext}", "wb") as f:
         f.write(data)
     return f"/media/{name}.{ext}"
+
+class StorageUpdater:
+    def __init__(self, update_every: float=10):
+        self.lasttime = time()
+        self.updatetime = update_every
+    def __store(self, p: List[Post]):
+        return dumps([post.ToJson() for post in p], indent=4, sort_keys=False)
+
+    def Update(self, posts: List[Post]) -> bool:
+        if abs(time() - self.lasttime) > self.updatetime:
+            self.lasttime = time()
+            print("updating storage ...")
+            with open("storage.json", "wb") as f:
+                f.write(self.__store(posts).encode("utf-8"))
+            return True
+        return False
+    
+    def ForceUpdate(self, posts: List[Post]) -> None:
+        print("updating storage ...")
+        with open("storage.json", "wb") as f:
+            f.write(self.__store(posts).encode("utf-8"))
+        self.lasttime = time()
+    
+    def Load(self) -> List[Post]:
+        print("loading from storage ...")
+        with open("storage.json", "rb") as f:
+            return [FromJson(p) for p in loads(f.read().decode("utf-8"))]
 
 @app.route('/')
 @app.route('/index.html')
@@ -171,6 +198,7 @@ def addpost():
             MakePost(title, content,
                 existing_posts=POSTS
             )
+    SU.Update(POSTS)
     return flask.redirect('/')
 
 @app.route('/media/<path:path>')
@@ -188,6 +216,7 @@ if DEBUG:
     def clearposts():
         global POSTS
         POSTS = []
+        SU.ForceUpdate(POSTS)
         return flask.redirect('/')
 
     @app.route('/clearcookies')
@@ -198,7 +227,8 @@ if DEBUG:
         return r
 
 if __name__ == "__main__":
-    POSTS = []
+    SU = StorageUpdater()
+    POSTS: List[Post] = SU.Load()
     if not SERVE:
         app.run('localhost', 80, DEBUG)
     else:
